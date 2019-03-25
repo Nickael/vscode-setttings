@@ -36,10 +36,12 @@
         "editorLineNumber.activeForeground": "#52325d",
         "editor.lineHighlightBackground": "#52325d0e",
         "editorLineNumber.foreground": "#52325da9",
-        "editorGutter.background": "#F6F6F6",
+        // "editorGutter.background": "#F6F6F6",
+        "editorGutter.background": "#EAE8EA",
         "editorHoverWidget.background": "#EAE8EA",
         "editorHoverWidget.border": "#eae8ea00",
         "editorGroupHeader.tabsBackground": "#EAE8EA",
+        "editorGroupHeader.tabsBorder": "#EAE8EA",
         "editorGroup.border": "#EAE8EA",
         "editorGroupHeader.noTabsBackground": "#EAE8EA",
         "editorGroup.emptyBackground": "#EAE8EA",
@@ -54,8 +56,8 @@
         "panel.border": "#52325d00",
         "panelTitle.activeBorder": "#52325d",
         "panelTitle.activeForeground": "#52325d",
-        "statusBar.background": "#52325d0e",
-        "statusBar.border": "#52325d00",
+        "statusBar.background": "#EAE8EA",
+        "statusBar.border": "#EAE8EA",
         "statusBar.foreground": "#52325d",
         "extensionButton.prominentBackground": "#52325d",
         "extensionButton.prominentHoverBackground": "#52325dec",
@@ -73,9 +75,14 @@
         "tab.activeBackground": "#F6F6F6",
         "tab.hoverBackground": "#52325d0e",
         "tab.hoverBorder": "#52325d0e",
+        "sideBarSectionHeader.background": "#EAE8EA",
+        "sideBarSectionHeader.foreground": "#52325d"
     },
     "files.exclude": {
         "**/.vscode": true
+    },
+    "files.associations": {
+        "hosts": "shellscript"
     },
     "editor.renderIndentGuides": false,
     "editor.fontLigatures": true,
@@ -86,5 +93,6 @@
     "linesinfostatusbar.totalDisplayFormat": "Total : %d ",
     "linesinfostatusbar.selectedDisplayFormat": "- %d Selected",
     "clock.dateFormat": "dd.mm.yyyy -  HH:MM:ss",
-    "window.openFilesInNewWindow": "on",
+    "window.openFilesInNewWindow": "default",
+    "search.showLineNumbers": true,
 }
