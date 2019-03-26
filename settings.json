@@ -82,14 +82,23 @@
         "tab.hoverBorder": "#52325d0e",
     },
     "files.exclude": {
-        "**/.vscode": true
+        "**/.vscode": true,
+        "**/Ma musique": true,
+        "**/Mes images": true,
+        "**/Mes vidéos": true,
+        "desktop.ini": true
     },
     "files.associations": {
         "hosts": "shellscript",
         "hosts.ics": "shellscript",
         "aliases": "yaml",
-        "bashrc": "shellscript",
+        "*rc": "shellscript",
         "crontab": "shellscript",
+        "*.cnf": "apacheconf",
+        "*.conf": "apacheconf",
+        "AdditionalConfiguration.php*": "php",
+        "LocalConfiguration.php*": "php",
+        "realurl_conf.php*": "php",
     },
     "editor.renderIndentGuides": false,
     "editor.fontLigatures": true,
@@ -104,5 +113,5 @@
     "search.showLineNumbers": true,
     "guides.active.gutter": true,
     "projectNameInStatusBar.align": "left",
-    "projectNameInStatusBar.alignPriority": 100,
+    "projectNameInStatusBar.alignPriority": 500,
 }

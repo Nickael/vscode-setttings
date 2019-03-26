@@ -7,5 +7,15 @@
     {
         "key": "ctrl+k d",
         "command": "-lafe.duplicateCode"
+    },
+    {
+        "key": "ctrl+k ctrl+oem_5",
+        "command": "editor.foldAllMarkerRegions",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k ctrl+8",
+        "command": "-editor.foldAllMarkerRegions",
+        "when": "editorTextFocus"
     }
 ]
