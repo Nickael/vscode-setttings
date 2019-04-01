@@ -12,6 +12,7 @@
         "*.conf": "apacheconf",
         "*.pagets": "typoscript",
         "*.setupts": "typoscript",
+        "*.php*": "php",
         "*rc": "shellscript",
         "AdditionalConfiguration.php*": "php",
         "aliases": "yaml",
