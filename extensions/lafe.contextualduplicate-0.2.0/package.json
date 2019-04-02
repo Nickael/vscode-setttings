@@ -1,0 +1,56 @@
+{
+	"name": "contextualduplicate",
+	"displayName": "Contextual Duplicate",
+	"description": "This extension duplicates text based on the context. If text is selected, only the selected text will be duplicated. Otherwise, the complete line will be duplicated.",
+	"version": "0.2.0",
+	"publisher": "lafe",
+	"author": "Lars Fernhomberg",
+	"homepage": "https://github.com/lafe/ContextualDuplicate",
+	"engines": {
+		"vscode": "^1.0.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "GitHub",
+		"url": "https://github.com/lafe/ContextualDuplicate.git"
+	},
+	"bugs": {
+		"url": "https://github.com/lafe/ContextualDuplicate/issues"
+	},
+	"activationEvents": [
+		"onCommand:lafe.duplicateCode"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "lafe.duplicateCode",
+				"title": "Duplicate code"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "lafe.duplicateCode",
+				"key": "ctrl+k d"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	},
+	"devDependencies": {
+		"typescript": "^1.8.5",
+		"vscode": "^0.11.0"
+	},
+	"icon": "icon/icon.png",
+	"__metadata": {
+		"id": "0f9fd6dc-5273-458d-9d1c-b854f8ac5518",
+		"publisherId": "78ae5dd5-3f0e-47c7-809c-2e6d1f67bf81",
+		"publisherDisplayName": "Lars Fernhomberg"
+	}
+}

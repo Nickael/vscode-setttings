@@ -1,0 +1,78 @@
+{
+	"name": "status-bar-breadcrumb",
+	"displayName": "BreadCrumb in StatusBar [DEPRECATED]",
+	"description": "Temporary solution which helps to watch current active tab and easily navigate through relative paths and files",
+	"version": "0.3.1",
+	"publisher": "danields761",
+	"author": "Daniel Daniel's <danields761@gmail.com> (https://github.com/danields761)",
+	"contributors": [
+		"innerlee <lovebufan@gmail.com> (https://github.com/innerlee)"
+	],
+	"repository": "https://github.com/danields761/status-bar-breadcrumb.git",
+	"icon": "images/icon.png",
+	"engines": {
+		"vscode": "^1.18.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "statusBarBreadcrumb.showSameLevelFilesForGiven",
+				"title": "BreadCrumb: Show navigation menu for directory which hold current file [DEPRECATED]"
+			},
+			{
+				"command": "statusBarBreadcrumb.showThisFileLevelNavigation",
+				"title": "BreadCrumb: Show navigation menu for directory which hold current file"
+			},
+			{
+				"command": "statusBarBreadcrumb.showLastDirLevelNavigation",
+				"title": "BreadCrumb: Show navigation menu for directory which has been selected last time, do nothing if it wasn't occurs"
+			}
+		],
+		"configuration": [
+			{
+				"title": "BreadCrumb in StatusBar extension",
+				"properties": {
+					"statusBarBreadcrumb.additionalFilesExclude": {
+						"type": "array",
+						"items": [
+							"string"
+						],
+						"default": [],
+						"description": "Additional list of glob pattern to exclude files"
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"compile": "babel src --out-dir out --source-maps",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"dependencies": {
+		"minimatch": "^3.0.4",
+		"vsce": "^1.43.0"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^7.0.0",
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"eslint": "^4.6.1",
+		"mocha": "^3.5.0",
+		"typescript": "^2.5.2",
+		"vscode": "^1.1.9"
+	},
+	"__metadata": {
+		"id": "4b5addae-3606-40cc-a3dc-7e13c922f03c",
+		"publisherId": "0210353d-8c63-4da8-ad30-b40db22c559d",
+		"publisherDisplayName": "Daniel Daniels"
+	}
+}

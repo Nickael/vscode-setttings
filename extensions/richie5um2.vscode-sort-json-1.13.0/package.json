@@ -1,0 +1,134 @@
+{
+	"name": "vscode-sort-json",
+	"version": "1.13.0",
+	"description": "Sorts the keys within JSON objects",
+	"publisher": "richie5um2",
+	"author": "Rich Somerfield",
+	"license": "MIT",
+	"homepage": "https://github.com/richie5um/vscode-sort-json",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/richie5um/vscode-sort-json"
+	},
+	"bugs": {
+		"url": "https://github.com/richie5um/vscode-sort-json/issues"
+	},
+	"main": "lib/index.js",
+	"scripts": {
+		"test": "mocha test/internal"
+	},
+	"dependencies": {
+		"json5": "^0.5.0",
+		"lodash": "^4.13.1"
+	},
+	"devDependencies": {
+		"vscode": "0.10.x",
+		"mocha": "~2.3.3"
+	},
+	"displayName": "Sort JSON objects",
+	"icon": "resources/Icon.png",
+	"engines": {
+		"vscode": "0.10.x"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:sortJSON.sortJSON",
+		"onCommand:sortJSON.sortJSONReverse",
+		"onCommand:sortJSON.sortJSONKeyLength",
+		"onCommand:sortJSON.sortJSONKeyLengthReverse"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "sortJSON.sortJSON",
+				"title": "Sort JSON"
+			},
+			{
+				"command": "sortJSON.sortJSONReverse",
+				"title": "Sort JSON (reverse)"
+			},
+			{
+				"command": "sortJSON.sortJSONKeyLength",
+				"title": "Sort JSON (by key length)"
+			},
+			{
+				"command": "sortJSON.sortJSONKeyLengthReverse",
+				"title": "Sort JSON (by reverse key length)"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"properties": {
+				"sortJSON.orderOverride": {
+					"type": "array",
+					"default": [],
+					"description": "Settings to override the sort order (i.e. to be at the start of the order)"
+				},
+				"sortJSON.orderUnderride": {
+					"type": "array",
+					"default": [],
+					"description": "Settings to underride the sort order (i.e. to be at the end of the order)"
+				}
+			}
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"command": "sortJSON.sortJSON",
+					"group": "7_modification",
+					"title": "Sort JSON",
+					"when": "editorLangId == json"
+				},
+				{
+					"command": "sortJSON.sortJSON",
+					"group": "7_modification",
+					"title": "Sort JSON",
+					"when": "editorLangId == jsonc"
+				},
+				{
+					"command": "sortJSON.sortJSONReverse",
+					"group": "7_modification",
+					"title": "Sort JSON (reverse)",
+					"when": "editorLangId == json"
+				},
+				{
+					"command": "sortJSON.sortJSONReverse",
+					"group": "7_modification",
+					"title": "Sort JSON",
+					"when": "editorLangId == jsonc"
+				},
+				{
+					"command": "sortJSON.sortJSONKeyLength",
+					"group": "7_modification",
+					"title": "Sort JSON (by key length)",
+					"when": "editorLangId == json"
+				},
+				{
+					"command": "sortJSON.sortJSONKeyLength",
+					"group": "7_modification",
+					"title": "Sort JSON (by key length)",
+					"when": "editorLangId == jsonc"
+				},
+				{
+					"command": "sortJSON.sortJSONKeyLengthReverse",
+					"group": "7_modification",
+					"title": "Sort JSON (by reverse key length)",
+					"when": "editorLangId == json"
+				},
+				{
+					"command": "sortJSON.sortJSONKeyLengthReverse",
+					"group": "7_modification",
+					"title": "Sort JSON (by reverse key length)",
+					"when": "editorLangId == jsonc"
+				}
+			]
+		}
+	},
+	"__metadata": {
+		"id": "3fb77af3-b8b3-4cb9-9137-f555bd80e2b1",
+		"publisherId": "c410f7b8-d406-4e23-b77b-3719c4d5efb7",
+		"publisherDisplayName": "richie5um2"
+	}
+}

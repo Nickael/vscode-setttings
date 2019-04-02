@@ -1,0 +1,78 @@
+{
+	"name": "typo3-typoscript",
+	"displayName": "TYPO3 TypoScript",
+	"description": "Syntax highlighting for TYPO3 TypoScript",
+	"version": "0.1.0",
+	"publisher": "benjaminkott",
+	"icon": "media/icon.jpg",
+	"engines": {
+		"vscode": "^1.15.0"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/benjaminkott/vscode-typo3-typoscript/issues"
+	},
+	"homepage": "https://github.com/benjaminkott/vscode-typo3-typoscript",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/benjaminkott/vscode-typo3-typoscript.git"
+	},
+	"categories": [
+		"Languages"
+	],
+	"keywords": [
+		"typoscript",
+		"typo3",
+		"template"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "typoscript",
+				"aliases": [
+					"TypoScript",
+					"typoscript"
+				],
+				"extensions": [
+					".typoscript"
+				],
+				"filenames": [
+					"constants.txt",
+					"ext_conf_template.txt",
+					"ext_typoscript_setup.txt",
+					"ext_typoscript_constants.txt",
+					"setup.txt"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "tsconfig",
+				"aliases": [
+					"TsConfig",
+					"tsconfig"
+				],
+				"extensions": [
+					".tsconfig"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "typoscript",
+				"scopeName": "source.typoscript",
+				"path": "./syntaxes/typoscript.tmLanguage.json"
+			},
+			{
+				"language": "tsconfig",
+				"scopeName": "source.tsconfig",
+				"path": "./syntaxes/tsconfig.tmLanguage.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "3a2d94b0-a0d3-43fb-b741-2d6cad90e267",
+		"publisherId": "a6d69360-b516-46f5-ab48-256e7cb1ff7e",
+		"publisherDisplayName": "Benjamin Kott"
+	}
+}

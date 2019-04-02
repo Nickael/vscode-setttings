@@ -1,0 +1,82 @@
+{
+	"name": "exclude-it",
+	"displayName": "Exclude It",
+	"description": "exclude files or folders with right click ",
+	"version": "1.2.1",
+	"publisher": "YoRolling",
+	"engines": {
+		"vscode": "^1.29.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension",
+	"author": {
+		"name": "YoRolling",
+		"email": "walldr2161ly@163.com",
+		"url": "https://github.com/YoRolling/"
+	},
+	"icon": "icon.png",
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/YoRolling/exclude-it/"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.excludeWs",
+				"title": "Exclude: Folder"
+			},
+			{
+				"command": "extension.excludeglobal",
+				"title": "Exclude: User"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "extension.excludeWs"
+				},
+				{
+					"command": "extension.excludeglobal"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"properties": {
+				"excludeIt.folder": {
+					"type": "boolean",
+					"default": true,
+					"description": "save configuration to foler or workspace， true for folder， false for workspace"
+				}
+			},
+			"title": "Exclude It configuration"
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.21",
+		"tslint": "^5.8.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"subdir": "0.0.3"
+	},
+	"__metadata": {
+		"id": "b411c1eb-fb54-4028-a7af-d349238a673e",
+		"publisherId": "436bde57-4f58-4740-b1a1-74803dff8542",
+		"publisherDisplayName": "YoRolling"
+	}
+}
