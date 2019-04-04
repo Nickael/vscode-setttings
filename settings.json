@@ -146,7 +146,7 @@
     "workbench.iconTheme": "vs-nomo-dark",
     "workbench.startupEditor": "none",
     "workbench.statusBar.feedback.visible": false,
-    "cSpell.language": "en,en-GB",
+    "cSpell.language": "en,en-GB,fr",
     "cSpell.enabledLanguageIds": [
         "asciidoc",
         "c",
@@ -174,5 +174,6 @@
         "typescript",
         "typescriptreact",
         "yml"
-    ]
+    ],
+    "cSpell.showStatus": false
 }
