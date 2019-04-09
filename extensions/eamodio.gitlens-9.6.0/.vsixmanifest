@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Language="en-US" Id="gitlens" Version="9.5.1" Publisher="eamodio"/>
+    <Identity Language="en-US" Id="gitlens" Version="9.6.0" Publisher="eamodio"/>
     <DisplayName>GitLens — Git supercharged</DisplayName>
     <Description xml:space="preserve">Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more</Description>
     <Tags>gitlens,git,blame,log,annotation,multi-root ready,keybindings</Tags>
     <Categories>Other</Categories>
     <GalleryFlags>Public</GalleryFlags>
-    <Badges><Badge Link="https://join.slack.com/t/vscode-dev-community/shared_invite/enQtMjIxOTgxNDE3NzM0LWU5M2ZiZDU1YjBlMzdlZjA2YjBjYzRhYTM5NTgzMTAxMjdiNWU0ZmQzYWI3MWU5N2Q1YjBiYmQ4MzY0NDE1MzY" ImgUri="https://img.shields.io/badge/vscode--dev--community-gitlens-blue.svg?logo=slack" Description="Join us in the #gitlens channel" /></Badges>
+    <Badges><Badge Link="https://vscode-slack.amod.io" ImgUri="https://img.shields.io/badge/vscode--dev--community-gitlens-blue.svg?logo=slack" Description="Join us in the #gitlens channel" /></Badges>
     <Properties>
       <Property Id="Microsoft.VisualStudio.Code.Engine" Value="^1.30.0" />
       <Property Id="Microsoft.VisualStudio.Code.ExtensionDependencies" Value="" />

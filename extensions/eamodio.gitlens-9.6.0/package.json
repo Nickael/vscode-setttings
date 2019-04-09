@@ -2,7 +2,7 @@
 	"name": "gitlens",
 	"displayName": "GitLens — Git supercharged",
 	"description": "Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more",
-	"version": "9.5.1",
+	"version": "9.6.0",
 	"author": {
 		"name": "Eric Amodio",
 		"email": "eamodio@gmail.com"
@@ -26,7 +26,7 @@
 	"badges": [
 		{
 			"url": "https://img.shields.io/badge/vscode--dev--community-gitlens-blue.svg?logo=slack",
-			"href": "https://join.slack.com/t/vscode-dev-community/shared_invite/enQtMjIxOTgxNDE3NzM0LWU5M2ZiZDU1YjBlMzdlZjA2YjBjYzRhYTM5NTgzMTAxMjdiNWU0ZmQzYWI3MWU5N2Q1YjBiYmQ4MzY0NDE1MzY",
+			"href": "https://vscode-slack.amod.io",
 			"description": "Join us in the #gitlens channel"
 		}
 	],
@@ -1335,6 +1335,12 @@
 					"markdownDescription": "Specifies the default number of items to show in a view list. Use 0 to specify no limit",
 					"scope": "window"
 				},
+				"gitlens.views.pageItemLimit": {
+					"type": "number",
+					"default": 20,
+					"markdownDescription": "Specifies the number of items to show in a each page when paginating a view list. Use 0 to specify no limit",
+					"scope": "window"
+				},
 				"gitlens.views.fileHistory.avatars": {
 					"type": "boolean",
 					"default": true,
@@ -1828,22 +1834,31 @@
 				"category": "GitLens"
 			},
 			{
-				"command": "gitlens.diffHeadWithBranch",
-				"title": "Compare HEAD with Branch or Tag...",
+				"command": "gitlens.diffHeadWith",
+				"title": "Compare HEAD with...",
 				"category": "GitLens"
 			},
 			{
-				"command": "gitlens.diffWorkingWithBranch",
-				"title": "Compare Working Tree with Branch or Tag...",
+				"command": "gitlens.diffWorkingWith",
+				"title": "Compare Working Tree with...",
 				"category": "GitLens"
 			},
 			{
-				"command": "gitlens.diffWithBranch",
-				"title": "Open Changes with Branch or Tag...",
+				"command": "gitlens.diffWithRef",
+				"title": "Open Changes with...",
 				"category": "GitLens"
 			},
 			{
 				"command": "gitlens.diffWithNext",
+				"title": "Open Changes with Next Revision",
+				"category": "GitLens",
+				"icon": {
+					"dark": "images/dark/icon-next-commit.svg",
+					"light": "images/light/icon-next-commit.svg"
+				}
+			},
+			{
+				"command": "gitlens.diffWithNextInDiff",
 				"title": "Open Changes with Next Revision",
 				"category": "GitLens",
 				"icon": {
@@ -1885,6 +1900,15 @@
 			},
 			{
 				"command": "gitlens.diffWithWorking",
+				"title": "Open Changes with Working File",
+				"category": "GitLens",
+				"icon": {
+					"dark": "images/dark/icon-compare-ref-working.svg",
+					"light": "images/light/icon-compare-ref-working.svg"
+				}
+			},
+			{
+				"command": "gitlens.diffWithWorkingInDiff",
 				"title": "Open Changes with Working File",
 				"category": "GitLens",
 				"icon": {
@@ -2114,8 +2138,8 @@
 				"category": "GitLens"
 			},
 			{
-				"command": "gitlens.openFileRevisionFromBranch",
-				"title": "Open Revision from Branch or Tag...",
+				"command": "gitlens.openFileRevisionFrom",
+				"title": "Open Revision from...",
 				"category": "GitLens"
 			},
 			{
@@ -2459,6 +2483,20 @@
 				}
 			},
 			{
+				"command": "gitlens.views.contributor.addCoauthoredBy",
+				"title": "Add as Co-author",
+				"category": "GitLens"
+			},
+			{
+				"command": "gitlens.views.contributor.copyToClipboard",
+				"title": "Copy to Clipboard",
+				"category": "GitLens",
+				"icon": {
+					"dark": "images/dark/icon-clipboard.svg",
+					"light": "images/light/icon-clipboard.svg"
+				}
+			},
+			{
 				"command": "gitlens.views.terminalCheckoutBranch",
 				"title": "Checkout Branch (via Terminal)",
 				"category": "GitLens"
@@ -2666,7 +2704,7 @@
 			},
 			{
 				"command": "gitlens.views.compare.selectForCompare",
-				"title": "Compare Branch or Tag with...",
+				"title": "Compare References...",
 				"category": "GitLens",
 				"icon": {
 					"dark": "images/dark/icon-compare-refs.svg",
@@ -2866,20 +2904,24 @@
 					"when": "gitlens:enabled"
 				},
 				{
-					"command": "gitlens.diffHeadWithBranch",
+					"command": "gitlens.diffHeadWith",
 					"when": "gitlens:enabled"
 				},
 				{
-					"command": "gitlens.diffWorkingWithBranch",
+					"command": "gitlens.diffWorkingWith",
 					"when": "gitlens:enabled"
 				},
 				{
-					"command": "gitlens.diffWithBranch",
+					"command": "gitlens.diffWithRef",
 					"when": "gitlens:activeFileStatus =~ /tracked/"
 				},
 				{
 					"command": "gitlens.diffWithNext",
-					"when": "gitlens:activeFileStatus =~ /tracked/ && gitlens:activeFileStatus =~ /revision/"
+					"when": "!isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
+				},
+				{
+					"command": "gitlens.diffWithNextInDiff",
+					"when": "isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
 				},
 				{
 					"command": "gitlens.diffWithPrevious",
@@ -2899,7 +2941,11 @@
 				},
 				{
 					"command": "gitlens.diffWithWorking",
-					"when": "gitlens:activeFileStatus =~ /tracked/"
+					"when": "!isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
+				},
+				{
+					"command": "gitlens.diffWithWorkingInDiff",
+					"when": "isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
 				},
 				{
 					"command": "gitlens.diffLineWithWorking",
@@ -3042,7 +3088,7 @@
 					"when": "gitlens:activeFileStatus =~ /tracked/"
 				},
 				{
-					"command": "gitlens.openFileRevisionFromBranch",
+					"command": "gitlens.openFileRevisionFrom",
 					"when": "gitlens:activeFileStatus =~ /tracked/"
 				},
 				{
@@ -3230,6 +3276,14 @@
 					"when": "false"
 				},
 				{
+					"command": "gitlens.views.contributor.addCoauthoredBy",
+					"when": "false"
+				},
+				{
+					"command": "gitlens.views.contributor.copyToClipboard",
+					"when": "false"
+				},
+				{
 					"command": "gitlens.views.terminalCheckoutBranch",
 					"when": "false"
 				},
@@ -3367,7 +3421,7 @@
 				},
 				{
 					"command": "gitlens.views.compare.selectForCompare",
-					"when": "gitlens:enabled && gitlens.views.compare.enabled"
+					"when": "gitlens:enabled && config.gitlens.views.compare.enabled"
 				},
 				{
 					"command": "gitlens.views.compare.clear",
@@ -3514,7 +3568,12 @@
 			"editor/title": [
 				{
 					"command": "gitlens.diffWithWorking",
-					"when": "gitlens:activeFileStatus =~ /revision/ && resourceScheme != file && resourceScheme != git",
+					"when": "!isInDiffEditor && gitlens:activeFileStatus =~ /revision/ && resourceScheme != file && resourceScheme != git",
+					"group": "navigation@0"
+				},
+				{
+					"command": "gitlens.diffWithWorkingInDiff",
+					"when": "isInDiffEditor && gitlens:activeFileStatus =~ /revision/ && resourceScheme != file && resourceScheme != git",
 					"group": "navigation@0"
 				},
 				{
@@ -3551,7 +3610,12 @@
 				},
 				{
 					"command": "gitlens.diffWithNext",
-					"when": "gitlens:activeFileStatus =~ /tracked/ && gitlens:activeFileStatus =~ /tracked/ && gitlens:activeFileStatus =~ /revision/ && config.gitlens.menus.editorGroup.compare",
+					"when": "!isInDiffEditor && gitlens:activeFileStatus =~ /revision/ && config.gitlens.menus.editorGroup.compare",
+					"group": "navigation@99"
+				},
+				{
+					"command": "gitlens.diffWithNextInDiff",
+					"when": "isInDiffEditor && gitlens:activeFileStatus =~ /revision/ && config.gitlens.menus.editorGroup.compare",
 					"group": "navigation@99"
 				},
 				{
@@ -3694,7 +3758,7 @@
 					"group": "1_gitlens@1"
 				},
 				{
-					"command": "gitlens.diffWithBranch",
+					"command": "gitlens.diffWithRef",
 					"when": "gitlens:enabled && config.gitlens.menus.scmItem.compare",
 					"group": "1_gitlens@2"
 				},
@@ -4067,6 +4131,21 @@
 					"command": "gitlens.views.unstar",
 					"when": "viewItem =~ /gitlens:branch\\b.*?\\+starred\\b.*?/",
 					"group": "8_gitlens_@1"
+				},
+				{
+					"command": "gitlens.views.contributor.copyToClipboard",
+					"when": "viewItem =~ /gitlens:contributor\\b/",
+					"group": "inline@98"
+				},
+				{
+					"command": "gitlens.views.contributor.copyToClipboard",
+					"when": "viewItem =~ /gitlens:contributor\\b/",
+					"group": "1_gitlens@1"
+				},
+				{
+					"command": "gitlens.views.contributor.addCoauthoredBy",
+					"when": "viewItem =~ /gitlens:contributor\\b/",
+					"group": "2_gitlens@1"
 				},
 				{
 					"command": "gitlens.openCommitInRemote",
@@ -4643,12 +4722,12 @@
 			{
 				"command": "gitlens.diffWithNext",
 				"key": "alt+.",
-				"when": "config.gitlens.keymap == alternate && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
+				"when": "config.gitlens.keymap == alternate && editorTextFocus && !isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
 			},
 			{
-				"command": "gitlens.diffLineWithPrevious",
-				"key": "shift+alt+,",
-				"when": "config.gitlens.keymap == alternate && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
+				"command": "gitlens.diffWithNextInDiff",
+				"key": "alt+.",
+				"when": "config.gitlens.keymap == alternate && isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
 			},
 			{
 				"command": "gitlens.diffWithPrevious",
@@ -4661,13 +4740,23 @@
 				"when": "config.gitlens.keymap == alternate && isInDiffEditor && gitlens:activeFileStatus =~ /tracked/"
 			},
 			{
-				"command": "gitlens.diffLineWithWorking",
-				"key": "alt+w",
+				"command": "gitlens.diffLineWithPrevious",
+				"key": "shift+alt+,",
 				"when": "config.gitlens.keymap == alternate && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
 			},
 			{
 				"command": "gitlens.diffWithWorking",
-				"key": "shift+alt+w",
+				"key": "shift+alt+.",
+				"when": "config.gitlens.keymap == alternate && editorTextFocus && !isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
+			},
+			{
+				"command": "gitlens.diffWithWorkingInDiff",
+				"key": "shift+alt+.",
+				"when": "config.gitlens.keymap == alternate && isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
+			},
+			{
+				"command": "gitlens.diffLineWithWorking",
+				"key": "alt+w",
 				"when": "config.gitlens.keymap == alternate && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
 			},
 			{
@@ -4722,13 +4811,13 @@
 				"command": "gitlens.diffWithNext",
 				"key": "ctrl+shift+g .",
 				"mac": "cmd+alt+g .",
-				"when": "config.gitlens.keymap == chorded && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
+				"when": "config.gitlens.keymap == chorded && editorTextFocus && !isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
 			},
 			{
-				"command": "gitlens.diffLineWithPrevious",
-				"key": "ctrl+shift+g shift+,",
-				"mac": "cmd+alt+g shift+,",
-				"when": "config.gitlens.keymap == chorded && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
+				"command": "gitlens.diffWithNextInDiff",
+				"key": "ctrl+shift+g .",
+				"mac": "cmd+alt+g .",
+				"when": "config.gitlens.keymap == chorded && isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
 			},
 			{
 				"command": "gitlens.diffWithPrevious",
@@ -4743,15 +4832,27 @@
 				"when": "config.gitlens.keymap == chorded && isInDiffEditor && gitlens:activeFileStatus =~ /tracked/"
 			},
 			{
-				"command": "gitlens.diffLineWithWorking",
-				"key": "ctrl+shift+g w",
-				"mac": "cmd+alt+g w",
+				"command": "gitlens.diffLineWithPrevious",
+				"key": "ctrl+shift+g shift+,",
+				"mac": "cmd+alt+g shift+,",
 				"when": "config.gitlens.keymap == chorded && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
 			},
 			{
 				"command": "gitlens.diffWithWorking",
-				"key": "ctrl+shift+g shift+w",
-				"mac": "cmd+alt+g shift+w",
+				"key": "ctrl+shift+g shift+.",
+				"mac": "cmd+alt+g shift+.",
+				"when": "config.gitlens.keymap == chorded && editorTextFocus && !isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
+			},
+			{
+				"command": "gitlens.diffWithWorkingInDiff",
+				"key": "ctrl+shift+g shift+.",
+				"mac": "cmd+alt+g shift+.",
+				"when": "config.gitlens.keymap == chorded && isInDiffEditor && gitlens:activeFileStatus =~ /revision/"
+			},
+			{
+				"command": "gitlens.diffLineWithWorking",
+				"key": "ctrl+shift+g w",
+				"mac": "cmd+alt+g w",
 				"when": "config.gitlens.keymap == chorded && editorTextFocus && gitlens:activeFileStatus =~ /tracked/"
 			},
 			{
@@ -4865,52 +4966,61 @@
 		}
 	},
 	"scripts": {
+		"analyze:bundle": "webpack --env.analyzeBundle",
+		"analyze:deps": "webpack --env.analyzeDeps",
 		"build": "webpack --env.development",
 		"bundle": "webpack --env.production",
 		"clean": "git clean -Xdf -e !.cache-images -e !node_modules -e !node_modules/**/*",
-		"lint": "tslint --project tsconfig.json && tslint --project ui.tsconfig.json",
+		"lint": "eslint src/**/*.ts --fix",
 		"pack": "vsce package",
-		"pretty": "prettier --config .prettierrc --loglevel warn --write \"./**/*.{ts,md,json}\" && tslint --project tsconfig.json --fix && tslint --project ui.tsconfig.json --fix",
+		"pretty": "prettier --config .prettierrc --loglevel warn --write \"./**/*.{ts,md,json}\" && npm run lint",
 		"pub": "vsce publish",
 		"rebuild": "npm run reset && npm run build",
 		"reset": "npm run clean && npm install --no-save",
 		"watch": "webpack --watch --env.development --info-verbosity verbose",
-		"ui:optimize": "webpack --config-name ui --env.optimizeImages",
-		"ui:watch": "webpack --watch --config-name ui --env.development --info-verbosity verbose",
+		"webviews:optimize": "webpack --config-name webviews --env.optimizeImages",
+		"webviews:watch": "webpack --watch --config-name webviews --env.development --info-verbosity verbose",
 		"update:emoji": "pushd emoji && node ./shortcodeToEmoji.js && popd",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"vscode:prepublish": "npm run reset && npm run bundle"
 	},
 	"dependencies": {
-		"date-fns": "1.30.1",
+		"dayjs": "1.8.12",
 		"iconv-lite": "0.4.24",
 		"lodash-es": "4.17.11",
-		"tslib": "1.9.3",
-		"vsls": "0.3.967"
+		"vsls": "0.3.1291"
 	},
 	"devDependencies": {
-		"@types/lodash-es": "4.17.1",
+		"@types/lodash-es": "4.17.3",
 		"@types/node": "10.1.4",
-		"clean-webpack-plugin": "1.0.1",
-		"css-loader": "2.1.0",
+		"@typescript-eslint/eslint-plugin": "1.6.0",
+		"@typescript-eslint/parser": "1.6.0",
+		"clean-webpack-plugin": "2.0.1",
+		"circular-dependency-plugin": "5.0.2",
+		"css-loader": "2.1.1",
+		"eslint": "5.16.0",
+		"eslint-cli": "1.1.1",
+		"eslint-config-prettier": "4.1.0",
+		"eslint-loader": "2.1.2",
+		"eslint-plugin-import": "2.16.0",
+		"eslint-plugin-prettiest": "0.0.1",
+		"html-webpack-exclude-assets-plugin": "0.0.7",
 		"html-webpack-inline-source-plugin": "0.0.10",
 		"html-webpack-plugin": "3.2.0",
 		"imagemin-webpack-plugin": "2.4.2",
 		"mini-css-extract-plugin": "0.5.0",
 		"node-sass": "4.11.0",
 		"prettier": "1.16.4",
-		"prettier-tslint": "0.4.2",
+		"prettier-eslint": "8.8.2",
 		"sass-loader": "7.1.0",
-		"terser-webpack-plugin": "1.2.2",
-		"tslint": "5.12.1",
-		"tslint-loader": "3.5.4",
-		"tslint-prettiest": "0.0.1",
+		"terser-webpack-plugin": "1.2.3",
 		"ts-loader": "5.3.3",
-		"typescript": "3.2.4",
-		"vsce": "1.57.0",
-		"vscode": "1.1.29",
-		"webpack": "4.29.3",
-		"webpack-cli": "3.2.3"
+		"typescript": "3.4.2",
+		"vsce": "1.59.0",
+		"vscode": "1.1.33",
+		"webpack": "4.29.6",
+		"webpack-cli": "3.3.0",
+		"webpack-bundle-analyzer": "3.1.0"
 	},
 	"__metadata": {
 		"id": "4de763bd-505d-4978-9575-2b7696ecf94e",

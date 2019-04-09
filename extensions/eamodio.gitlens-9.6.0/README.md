@@ -1,7 +1,7 @@
 [![](https://vsmarketplacebadge.apphb.com/version-short/eamodio.gitlens.svg)](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 [![](https://vsmarketplacebadge.apphb.com/downloads-short/eamodio.gitlens.svg)](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 [![](https://vsmarketplacebadge.apphb.com/rating-short/eamodio.gitlens.svg)](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
-[![](https://img.shields.io/badge/vscode--dev--community-gitlens-blue.svg?logo=slack)](https://join.slack.com/t/vscode-dev-community/shared_invite/enQtMjIxOTgxNDE3NzM0LWU5M2ZiZDU1YjBlMzdlZjA2YjBjYzRhYTM5NTgzMTAxMjdiNWU0ZmQzYWI3MWU5N2Q1YjBiYmQ4MzY0NDE1MzY)
+[![](https://img.shields.io/badge/vscode--dev--community-gitlens-blue.svg?logo=slack)](https://vscode-slack.amod.io)
 
 <p align="center">
   <br />
@@ -21,7 +21,7 @@ While GitLens is generously offered to everyone free of charge, if you find it u
 - [**Become a Sponsor**](https://www.patreon.com/eamodio 'Become a sponsor on Patreon') &mdash; join the growing group of generous [backers](https://github.com/eamodio/vscode-gitlens/blob/master/BACKERS.md)
 - [**Donate via PayPal**](https://www.paypal.me/eamodio 'Donate via PayPal') or [**Donate via Cash App**](https://cash.me/$eamodio 'Donate via Cash App')
 
-Also please [write a review](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens#review-details 'Write a review'), [star or fork me on GitHub](https://github.com/eamodio/vscode-gitlens 'Star or fork me on GitHub'), and [follow me on Twitter](https://twitter.com/eamodio 'Follow me on Twitter')
+Also please [write a review](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens#review-details 'Write a review'), [star me on GitHub](https://github.com/eamodio/vscode-gitlens 'Star me on GitHub'), and [follow me on Twitter](https://twitter.com/eamodio 'Follow me on Twitter')
 
 # What's new in GitLens 9
 
@@ -304,12 +304,24 @@ The repositories view provides the following features,
         - An inline toolbar provides quick access to the _Open File_, _Copy Commit ID to Clipboard_ (`alt-click` for _Copy Commit Message to Clipboard_), and _Open File on Remote_ (if available) commands
         - A context menu provides access to more common file revision commands
 
+- **Contributors** &mdash; lists the contributors in the repository, sorted by contributed commits
+
+  - Provides the avatar (if enabled), name, and email address of each contributor
+    - An inline toolbar provides quick access to the _Copy to Clipboard_ command
+    - A context menu provides access to the _Copy to Clipboard_, _Add as Co-author_, and _Refresh_ commands
+    - Each contributor expands to list the repository's revision (commit) history filtered by the contributor
+      - An inline toolbar provides quick access to the _Compare with HEAD_ (`alt-click` for _Compare with Working Tree_), _Copy Commit ID to Clipboard_ (`alt-click` for _Copy Commit Message to Clipboard_), and _Open Commit on Remote_ (if available) commands
+      - A context menu provides access to more common revision (commit) commands
+      - Each revision (commit) expands to list its set of changed files, complete with status indicators for adds, changes, renames, and deletes
+        - An inline toolbar provides quick access to the _Open File_, _Copy Commit ID to Clipboard_ (`alt-click` for _Copy Commit Message to Clipboard_), and _Open File on Remote_ (if available) commands
+        - A context menu provides access to more common file revision commands
+
 - **Remotes** &mdash; lists the remotes in the repository
 
   - Provides the name of each remote, an indicator of the direction of the remote (fetch, push, both), remote service (if applicable), and repository path
     - An inline toolbar provides quick access to the _Fetch_, and _Open Repository on Remote_ (if available) commands
     - A context menu provides access to more common repository and remote commands
-    - Each remote expands list its remote branches
+    - Each remote expands to list its remote branches
       - See the **Branches** above for additional details
 
 - **Stashes** &mdash; lists the stashed changes in the repository
@@ -430,7 +442,7 @@ The search commits view provides the following features,
 
 A [customizable](#compare-view-settings- 'Jump to the Compare view settings') view to visualize comparisons between branches, tags, commits, and more
 
-- A toolbar provides quick access to the _Compare Branch or Tag with..._, _Keep Results_, _Clear Results_, and _Refresh_ commands
+- A toolbar provides quick access to the _Compare with..._, _Keep Results_, _Clear Results_, and _Refresh_ commands
 - A context menu provides _Automatic Layout_, _List Layout_, _Tree Layout_, _Open Settings_ commands
 
 The compare view provides the following features,
@@ -581,13 +593,13 @@ The compare view provides the following features,
 
 - Provides easy access to the following comparison commands via the `Command Palette` as well as in context via the many provided quick pick menus
 
-- Adds a _Directory Compare Working Tree with..._ command (`gitlens.diffDirectory`) to open the configured Git difftool to compare the working tree with the selected branch or tag
+- Adds a _Directory Compare Working Tree with..._ command (`gitlens.diffDirectory`) to open the configured Git difftool to compare the working tree with the selected reference
 
-- Adds a _Compare HEAD with Branch or Tag..._ command (`gitlens.diffHeadWithBranch`) to compare the index (HEAD) with the selected branch or tag
+- Adds a _Compare HEAD with..._ command (`gitlens.diffHeadWith`) to compare the index (HEAD) with the selected reference
 
-- Adds a _Compare Working Tree with Branch or Tag..._ command (`gitlens.diffWorkingWithBranch`) to compare the working tree with the selected branch or tag
+- Adds a _Compare Working Tree with..._ command (`gitlens.diffWorkingWith`) to compare the working tree with the selected reference
 
-- Adds an _Open Changes with Branch or Tag..._ command (`gitlens.diffWithBranch`) to compare the current file with the same file on the selected branch or tag
+- Adds an _Open Changes with..._ command (`gitlens.diffWithRef`) to compare the current file with the same file on the selected reference
 
 - Adds an _Open Changes with Next Revision_ command (`gitlens.diffWithNext`) with a shortcut of `alt+.` to compare the current file/diff with the next commit revision
 
@@ -613,7 +625,7 @@ The compare view provides the following features,
 
 - Adds an _Open Revision..._ command (`gitlens.openFileRevision`) to open the selected revision for the current file
 
-- Adds an _Open Revision from Branch or Tag..._ command (`gitlens.openFileRevisionFromBranch`) to open the revision of the current file from the selected branch
+- Adds an _Open Revision from..._ command (`gitlens.openFileRevisionFrom`) to open the revision of the current file from the selected reference
 
 - Adds an _Open Changes (with difftool)_ command (`gitlens.externalDiff`) to the source control group and source control resource context menus to open the changes of a file or set of files with the configured git difftool
 
@@ -805,6 +817,7 @@ See also [View Settings](#view-settings- 'Jump to the View settings')
 | `gitlens.views.commitFormat`                | Specifies the format of committed changes in the views. See the [GitLens docs](https://github.com/eamodio/vscode-gitlens/wiki/Advanced-Formatting) for advanced formatting<br /><br />Available tokens<br />`${id}` &mdash; commit id<br />`${author}` &mdash; commit author<br />`${email}` &mdash; commit author e-mail<br />`${message}` &mdash; commit message<br />`${ago}` &mdash; relative commit date (e.g. 1 day ago)<br />`${date}` &mdash; formatted commit date (format specified by `gitlens.defaultDateFormat`)<br />`${agoOrDate}` &mdash; commit date specified by `gitlens.defaultDateStyle`<br />`${authorAgo}` &mdash; commit author, relative commit date<br />`${authorAgoOrDate}` &mdash; commit author, commit date specified by `gitlens.defaultDateStyle`             |
 | `gitlens.views.commitDescriptionFormat`     | Specifies the description format of committed changes in the views. See the [GitLens docs](https://github.com/eamodio/vscode-gitlens/wiki/Advanced-Formatting) for advanced formatting<br /><br />Available tokens<br />`${id}` &mdash; commit id<br />`${author}` &mdash; commit author<br />`${email}` &mdash; commit author e-mail<br />`${message}` &mdash; commit message<br />`${ago}` &mdash; relative commit date (e.g. 1 day ago)<br />`${date}` &mdash; formatted commit date (format specified by `gitlens.defaultDateFormat`)<br />`${agoOrDate}` &mdash; commit date specified by `gitlens.defaultDateStyle`<br />`${authorAgo}` &mdash; commit author, relative commit date<br />`${authorAgoOrDate}` &mdash; commit author, commit date specified by `gitlens.defaultDateStyle` |
 | `gitlens.views.defaultItemLimit`            | Specifies the default number of items to show in a view list. Use 0 to specify no limit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `gitlens.views.pageItemLimit`               | Specifies the number of items to show in a each page when paginating a view list. Use 0 to specify no limit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `gitlens.views.showRelativeDateMarkers`     | Specifies whether to show relative date markers (_Less than a week ago_, _Over a week ago_, _Over a month ago_, etc) on revision (commit) histories in the views                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `gitlens.views.stashFileFormat`             | Specifies the format of a stashed file in the views<br /><br />Available tokens<br />`${directory}` &mdash; directory name<br />`${file}` &mdash; file name<br />`${filePath}` &mdash; formatted file name and path<br />`${path}` &mdash; full file path                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `gitlens.views.stashFileDescriptionFormat`  | Specifies the description format of a stashed file in the views<br /><br />Available tokens<br />`${directory}` &mdash; directory name<br />`${file}` &mdash; file name<br />`${filePath}` &mdash; formatted file name and path<br />`${path}` &mdash; full file path                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -888,6 +901,7 @@ A big thanks to the people that have contributed to this project:
 - Matt Cooper ([@vtbassmatt](https://github.com/vtbassmatt)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=vtbassmatt)
 - Segev Finer ([@segevfiner](https://github.com/segevfiner)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=segevfiner)
 - Cory Forsyth ([@bantic](https://github.com/bantic)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=bantic)
+- John Gee ([@shadowspawn](https://github.com/shadowspawn)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=shadowspawn)
 - Geoffrey ([@g3offrey](https://github.com/g3offrey)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=g3offrey)
 - Yukai Huang ([@Yukaii](https://github.com/Yukaii)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=Yukaii)
 - Roy Ivy III ([@rivy](https://github.com/rivy)) &mdash; [contributions](https://github.com/eamodio/vscode-gitlens/commits?author=rivy)
