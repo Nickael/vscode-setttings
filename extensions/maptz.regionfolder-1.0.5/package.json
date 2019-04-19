@@ -1,0 +1,70 @@
+{
+	"name": "regionfolder",
+	"displayName": "#region folding for VS Code",
+	"description": "Provides folding for text wrapped with #region comments in VS Code.",
+	"version": "1.0.5",
+	"homepage": "https://raw.githubusercontent.com/maptz/Maptz.VSCode.Extensions.customfolding/master/ReadMe.md",
+	"repository": "https://github.com/maptz/Maptz.VSCode.Extensions.customfolding",
+	"publisher": "maptz",
+	"engines": {
+		"vscode": "^1.24.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"icon": "imgs/Icon.png",
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "regionfolder.collapseAllRegions",
+				"title": "Collapse all #regions"
+			},
+			{
+				"command": "regionfolder.wrapWithRegion",
+				"title": "Wraps the current selection with collapsible region comments."
+			}
+		],
+		"keybindings": [
+			{
+				"command": "regionfolder.wrapWithRegion",
+				"key": "ctrl+m ctrl+r",
+				"when": "editorTextFocus"
+			}
+		],
+		"configuration": {
+			"title": "Maptz region folding configuration",
+			"type": "object",
+			"properties": {
+				"maptz.regionfolder": {
+					"type": "object",
+					"description": "Settings used for custom folding.",
+					"default": {}
+				}
+			}
+		},
+		"configurationDefaults": {}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.6",
+		"tslint": "^5.8.0",
+		"@types/node": "^7.0.43",
+		"@types/mocha": "^2.2.42"
+	},
+	"__metadata": {
+		"id": "d6be54c6-633d-45c9-89b0-05a9e9ebf4c3",
+		"publisherId": "6687261c-62a9-45e8-9369-db5e1f37b28a",
+		"publisherDisplayName": "maptz"
+	}
+}

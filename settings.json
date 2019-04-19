@@ -9,6 +9,9 @@
     "editor.scrollBeyondLastLine": false,
     "editor.suggestSelection": "first",
     "extensions.ignoreRecommendations": true,
+    "editor.tokenColorCustomizations": {
+        "comments": "#a3a7a6",
+    },
     "files.associations": {
         "*.cnf": "apacheconf",
         "*.conf": "apacheconf",
@@ -30,6 +33,7 @@
         "networks": "shellscript",
         "profile": "shellscript",
         "protocols": "shellscript",
+        "settings": "shellscript",
         "realurl_conf.php*": "php",
         "services": "shellscript",
         "setup.ts": "typoscript",
@@ -50,6 +54,7 @@
         "**/.git": true,
         "**/.hg": true,
         "**/.idea": true,
+        "**/*.dll": true,
         "**/.svn": true,
         "**/.symfony": true,
         "**/.vagrant.d": true,
@@ -97,7 +102,6 @@
     "window.newWindowDimensions": "maximized",
     "window.title": "${activeEditorShort} ${dirty}${separator}",
     "workbench.colorCustomizations": {
-        "foreground": "#313131",
         "activityBar.background": "#FFFFFE",
         "activityBar.foreground": "#52325d",
         "activityBarBadge.background": "#52325d",
@@ -115,8 +119,6 @@
         "inputOption.activeBorder": "#F3F3F3",
         "list.activeSelectionBackground": "#F3F3F3",
         "list.activeSelectionForeground": "#313131",
-        "list.focusForeground": "#FFFFFE",
-        "list.focusBackground": "#52325d",
         "list.hoverBackground": "#F3F3F3",
         "list.inactiveFocusBackground": "#F3F3F3",
         "list.inactiveSelectionBackground": "#F3F3F3",
