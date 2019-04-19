@@ -55,6 +55,7 @@
         "**/.hg": true,
         "**/.idea": true,
         "**/*.dll": true,
+        "**/*.lib": true,
         "**/.svn": true,
         "**/.symfony": true,
         "**/.vagrant.d": true,
