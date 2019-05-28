@@ -153,7 +153,7 @@
     "workbench.colorTheme": "FlatUI",
     "workbench.editor.tabCloseButton": "off",
     "workbench.iconTheme": "vs-nomo-dark",
-    "workbench.startupEditor": "none",
+    "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
     "cSpell.language": "en,en-GB,fr",
     "cSpell.enabledLanguageIds": [
@@ -187,5 +187,52 @@
     "cSpell.showStatus": false,
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "cSpell.userWords": [
+        "arret",
+        "ceid",
+        "default",
+        "doison",
+        "donnee",
+        "eventuellemnet",
+        "extbase",
+        "frequence",
+        "frequences",
+        "from",
+        "get",
+        "hidden",
+        "ics",
+        "icstransportsprofils",
+        "iframes",
+        "itineraire",
+        "keyfile",
+        "keyid",
+        "kisio",
+        "methode",
+        "navitia",
+        "nickael",
+        "pi",
+        "plugplay",
+        "quicksearch",
+        "rakotonindrina",
+        "repository",
+        "searchdata",
+        "subpackage",
+        "table",
+        "talan",
+        "textfield",
+        "transportsprofils",
+        "tsfe",
+        "tsplugplay",
+        "tx",
+        "url",
+        "wizicon",
+        "xclass"
+    ],
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "php-cs-fixer.executablePath": "${extensionPath}\\php-cs-fixer.phar",
+    "php-cs-fixer.lastDownload": 1558956633191,
+    "window.zoomLevel": 0
 }
