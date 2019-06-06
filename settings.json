@@ -39,7 +39,8 @@
         "services": "shellscript",
         "*setup.ts": "typoscript",
         "setup.txt": "typoscript",
-        "tsconfig.txt": "typoscript"
+        "tsconfig.txt": "typoscript",
+        "vip": "shellscript"
     },
     "files.exclude": {
         "**/*.blf": true,
