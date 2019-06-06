@@ -91,6 +91,7 @@
         "**/fluid_template": true,
         "**/typo3temp": true,
         "**/uploads": true,
+        "**/.vscode": true,
         "desktop.ini": true
     },
     "guides.active.color.dark": "#FFFFFE",
@@ -189,13 +190,17 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "cSpell.userWords": [
+        "EXTKEY",
+        "addlist",
         "arret",
         "ceid",
         "default",
         "doison",
         "donnee",
         "eventuellemnet",
+        "excludelist",
         "extbase",
+        "flexform",
         "frequence",
         "frequences",
         "from",
@@ -205,6 +210,8 @@
         "icstransportsprofils",
         "iframes",
         "itineraire",
+        "keolis",
+        "keolislittoral",
         "keyfile",
         "keyid",
         "kisio",
@@ -226,6 +233,7 @@
         "tsplugplay",
         "tx",
         "url",
+        "webpassenger",
         "wizicon",
         "xclass"
     ],
@@ -234,5 +242,6 @@
     },
     "php-cs-fixer.executablePath": "${extensionPath}\\php-cs-fixer.phar",
     "php-cs-fixer.lastDownload": 1558956633191,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "breadcrumbs.enabled": false
 }
