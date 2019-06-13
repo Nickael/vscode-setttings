@@ -93,7 +93,8 @@
         "**/typo3temp": true,
         "**/uploads": true,
         "**/.vscode": true,
-        "desktop.ini": true
+        "desktop.ini": true,
+        "**/*.zip": true
     },
     "guides.active.color.dark": "#FFFFFE",
     "guides.active.color.light": "#52325d",
@@ -148,8 +149,8 @@
         "tab.border": "#FFFFFE",
         "tab.hoverBorder": "#673F74",
         "tab.inactiveBackground": "#FFFFFE",
-        "titleBar.activeBackground": "#52325d",
-        "titleBar.activeForeground": "#fff",
+        "titleBar.activeBackground": "#FFFFFE",
+        "titleBar.activeForeground": "#52325d",
         "titleBar.inactiveBackground": "#673F74"
     },
     "workbench.colorTheme": "FlatUI",
@@ -242,7 +243,6 @@
         "editor.defaultFormatter": "junstyle.php-cs-fixer"
     },
     "php-cs-fixer.executablePath": "${extensionPath}\\php-cs-fixer.phar",
-    "php-cs-fixer.lastDownload": 1558956633191,
-    "window.zoomLevel": 0,
-    "breadcrumbs.enabled": false
+    "php-cs-fixer.lastDownload": 1560159773940,
+    "window.zoomLevel": 0
 }
