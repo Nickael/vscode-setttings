@@ -1,3 +1,0 @@
-# Enforce checkout with linux lf consistent over all plattforms
-*.md text eol=lf
-*.json text eol=lf
